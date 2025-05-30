@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: notetraker-app
+    env: java
+    plan: free
+    buildCommand: mvn clean package
+    startCommand: java -jar target/webapp-runner.jar target/NoteTraker.war
+    branch: main
+    repo: https://github.com/amitbraj25/Note-Taker
+    envVars:
+      - key: DB_URL
+        value: server=primary.notetaker-project--x586bq25sbtw.addon.code.run:27536;database=myhiber
+      - key: DB_USER
+        value: 7ea6cfd31101ec75
+      - key: DB_PASSWORD
+        value: 47347cff65d1876e85d4f8053e1afa

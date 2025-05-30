@@ -6,9 +6,9 @@
     <session-factory>
     <!-- Database connection -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3307/myhiber</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.url">server=primary.notetaker-project--x586bq25sbtw.addon.code.run:27536;database=myhiber</property>
+        <property name="connection.username">7ea6cfd31101ec75</property>
+        <property name="connection.password">47347cff65d1876e85d4f8053e1afa</property>
         
         <!-- Select dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
