@@ -10,15 +10,16 @@
   <name>NoteTraker Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
- <!-- ✅ Add JitPack here -->
-   <repositories>
+  <!-- ✅ JitPack repository for webapp-runner -->
+  <repositories>
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
-    <!-- JUnit for testing -->
-      <dependencies>
+
+  <dependencies>
+    <!-- ✅ JUnit for testing -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -26,45 +27,47 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Hibernate Core -->
+    <!-- ✅ Hibernate Core -->
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>6.6.13.Final</version>
     </dependency>
 
-    <!-- MySQL Connector -->
+    <!-- ✅ MySQL Connector -->
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <version>8.0.33</version>
     </dependency>
 
-    <!-- Webapp Runner -->
+    <!-- ✅ Webapp Runner (corrected version) -->
     <dependency>
       <groupId>com.github.jsimone</groupId>
       <artifactId>webapp-runner</artifactId>
-      <version>9.0.41.0</version>
+      <version>9.0.27.1</version>
     </dependency>
   </dependencies>
 
   <build>
     <finalName>NoteTraker</finalName>
     <plugins>
-      <!-- Plugin to copy webapp-runner.jar to target folder -->
+      <!-- ✅ Plugin to copy webapp-runner.jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
             <phase>package</phase>
-            <goals><goal>copy</goal></goals>
+            <goals>
+              <goal>copy</goal>
+            </goals>
             <configuration>
               <artifactItems>
                 <artifactItem>
                   <groupId>com.github.jsimone</groupId>
                   <artifactId>webapp-runner</artifactId>
-                  <version>9.0.41.0</version>
+                  <version>9.0.27.1</version>
                   <destFileName>webapp-runner.jar</destFileName>
                 </artifactItem>
               </artifactItems>
