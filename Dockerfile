@@ -1,24 +1,27 @@
-# Use Maven to build the project
-FROM maven:3.8.7-eclipse-temurin-17 as builder
+# Use Maven to build the application
+FROM maven:3.8.5-openjdk-11 AS build
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy everything to container
-COPY . .
+# Copy your Maven project files
+COPY pom.xml .
+COPY src ./src
 
-# Build the WAR and copy webapp-runner
+# Build the project (WAR file will be created in /app/target)
 RUN mvn clean package
 
-# Use Tomcat base image to run the WAR
-FROM eclipse-temurin:17-jdk
+# Use official Tomcat image to run the WAR
+FROM tomcat:9.0-jdk11
 
-# Set working directory
-WORKDIR /app
+# Remove default apps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy WAR and webapp-runner from builder
-COPY --from=builder /app/target/NoteTraker.war /app/NoteTraker.war
-COPY --from=builder /app/target/webapp-runner.jar /app/webapp-runner.jar
+# Copy the built WAR file from the Maven build stage
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Run the application using webapp-runner
-CMD ["java", "-jar", "webapp-runner.jar", "NoteTraker.war"]
+# Expose the port that Render uses
+EXPOSE 8080
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]
